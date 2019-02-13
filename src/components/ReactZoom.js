@@ -41,16 +41,24 @@ const ReactZoom = (props) => {
     }
   }
 
+  const zoom = (e) => {
+    const pos = getPos(e)
+    const originWidth = data.width / magnify
+    const originHeight = data.height / magnify
+    const left = (pos.x / originWidth) * (originWidth - data.width)
+    const top = (pos.y / originHeight) * (originHeight - data.height)
+    setData({
+      ...data,
+      left: `${left}px`,
+      top: `${top}px`,
+    })
+  }
+
   const onMouseMove = (e) => {
     if (!isZoom) {
       return
     }
-    const pos = getPos(e)
-    setData({
-      ...data,
-      left: `-${pos.x}px`,
-      top: `-${pos.y}px`,
-    })
+    zoom(e)
   }
 
   const onMouseEnter = () => {
@@ -63,9 +71,10 @@ const ReactZoom = (props) => {
     setIsZoom(false)
   }
 
-  const onMouseDown = () => {
+  const onMouseDown = (e) => {
     if (on === ON_TYPES.grab) {
       setIsZoom(true)
+      zoom(e)
     }
   }
 
@@ -82,6 +91,7 @@ const ReactZoom = (props) => {
         display: 'inline-block',
         position: 'relative',
         overflow: 'hidden',
+        cursor: on === ON_TYPES.grab && isZoom ? 'grab' : 'default',
       }}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
@@ -133,7 +143,7 @@ ReactZoom.defaultProps = {
   zoomUrl: '',
   alt: 'image',
   on: ON_TYPES.grab,
-  magnify: 2,
+  magnify: 1.5,
   duration: 200,
   onImageLoaded: () => {},
   onZoomIn: () => {},
