@@ -7,7 +7,6 @@ const App = () => {
     <div className="App">
       <ReactZoom
         url='https://www.w3schools.com/howto/img_forest.jpg'
-        zoomUrl='http://www.jacklmoore.com/img/daisy.jpg'
       />
     </div>
   )

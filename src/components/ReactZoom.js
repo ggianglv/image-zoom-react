@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 const ON_TYPES = {
   mouseover: 'mouseover',
   grab: 'grab',
-  click: 'click',
 }
 
 const ReactZoom = (props) => {
@@ -43,6 +42,9 @@ const ReactZoom = (props) => {
   }
 
   const onMouseMove = (e) => {
+    if (!isZoom) {
+      return
+    }
     const pos = getPos(e)
     setData({
       ...data,
@@ -52,11 +54,25 @@ const ReactZoom = (props) => {
   }
 
   const onMouseEnter = () => {
-    setIsZoom(true)
+    if (on === ON_TYPES.mouseover) {
+      setIsZoom(true)
+    }
   }
 
   const onMouseLeave = () => {
     setIsZoom(false)
+  }
+
+  const onMouseDown = () => {
+    if (on === ON_TYPES.grab) {
+      setIsZoom(true)
+    }
+  }
+
+  const onMouseUp = () => {
+    if (on === ON_TYPES.grab) {
+      setIsZoom(false)
+    }
   }
 
   return (
@@ -67,6 +83,8 @@ const ReactZoom = (props) => {
         position: 'relative',
         overflow: 'hidden',
       }}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onMouseMove={onMouseMove}
@@ -75,10 +93,11 @@ const ReactZoom = (props) => {
         ref={imageRef} alt={alt}
         style={{
           pointerEvents: 'none',
+          userSelect: 'none',
         }}
         src={url}
       />
-      {data.width && (
+      {!!data.width && (
         <img
           style={{
             pointerEvents: 'none',
@@ -113,7 +132,7 @@ ReactZoom.propTypes = {
 ReactZoom.defaultProps = {
   zoomUrl: '',
   alt: 'image',
-  on: ON_TYPES.mouseover,
+  on: ON_TYPES.grab,
   magnify: 2,
   duration: 200,
   onImageLoaded: () => {},
