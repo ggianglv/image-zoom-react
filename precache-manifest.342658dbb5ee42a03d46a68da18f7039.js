@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "7456c109962d438dbe7e",
+    "revision": "2570bce75b6613e28d08",
     "url": "/image-zoom-react/static/css/main.0da4a178.chunk.css"
   },
   {
-    "revision": "7456c109962d438dbe7e",
-    "url": "/image-zoom-react/static/js/main.7456c109.chunk.js"
+    "revision": "2570bce75b6613e28d08",
+    "url": "/image-zoom-react/static/js/main.2570bce7.chunk.js"
   },
   {
     "revision": "1f8da14383c78b913215",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/image-zoom-react/static/js/2.54814967.chunk.js"
   },
   {
-    "revision": "2a8322ec1dae35aa7bf5d6bb532f84f1",
+    "revision": "6138fec8e5b950f95507a5e55a468f36",
     "url": "/image-zoom-react/index.html"
   }
 ];
