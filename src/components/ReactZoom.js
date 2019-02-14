@@ -1,5 +1,6 @@
-import React, { useState, useLayoutEffect, useRef, useMemo } from 'react'
+import React, { useState, useLayoutEffect, useRef, memo, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import './zoom.css'
 
 const ON_TYPES = {
   mouseover: 'mouseover',
@@ -25,12 +26,25 @@ const ReactZoom = (props) => {
   const [isZoom, setIsZoom] = useState(false)
   const imageRef = useRef(null)
 
+  useEffect(() => {
+    if (isZoom) {
+      onZoomIn()
+    } else {
+      onZoomOut()
+    }
+  }, [isZoom])
+
   useLayoutEffect(() => {
-    setData({
-      ...data,
-      width: imageRef.current.clientWidth * magnify,
-      height: imageRef.current.clientHeight * magnify,
-    })
+    const image = document.createElement('img')
+    image.onload = () => {
+      onImageLoaded()
+      setData({
+        ...data,
+        width: imageRef.current.clientWidth * magnify,
+        height: imageRef.current.clientHeight * magnify,
+      })
+    }
+    image.src = url
   }, [])
 
   const getPos = (e) => {
@@ -86,11 +100,8 @@ const ReactZoom = (props) => {
 
   return (
     <div
+      className="react-zoom-wrapper"
       style={{
-        border: 0,
-        display: 'inline-block',
-        position: 'relative',
-        overflow: 'hidden',
         cursor: on === ON_TYPES.grab && isZoom ? 'grab' : 'default',
       }}
       onMouseDown={onMouseDown}
@@ -100,20 +111,17 @@ const ReactZoom = (props) => {
       onMouseMove={onMouseMove}
     >
       <img
-        ref={imageRef} alt={alt}
-        style={{
-          pointerEvents: 'none',
-          userSelect: 'none',
-        }}
+        ref={imageRef}
+        alt={alt}
+        className="react-zoom-origin-image"
         src={url}
       />
       {!!data.width && (
         <img
+          className="react-zoom-image"
           style={{
-            pointerEvents: 'none',
             width: `${data.width}px`,
             height: `${data.height}px`,
-            position: 'absolute',
             left: data.left,
             top: data.top,
             transition: `opacity ${duration}ms ease-in-out`,
@@ -142,7 +150,7 @@ ReactZoom.propTypes = {
 ReactZoom.defaultProps = {
   zoomUrl: '',
   alt: 'image',
-  on: ON_TYPES.grab,
+  on: ON_TYPES.mouseover,
   magnify: 1.5,
   duration: 200,
   onImageLoaded: () => {},
@@ -150,4 +158,4 @@ ReactZoom.defaultProps = {
   onZoomOut: () => {},
 }
 
-export default ReactZoom
+export default memo(ReactZoom)

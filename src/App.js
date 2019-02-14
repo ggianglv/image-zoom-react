@@ -1,13 +1,20 @@
 import React from 'react'
+import styled from 'styled-components'
 import ReactZoom from './components/ReactZoom'
 import './App.css'
+
+const Wrapper = styled.div`
+  width: 500px;
+`
 
 const App = () => {
   return (
     <div className="App">
-      <ReactZoom
-        url='https://www.w3schools.com/howto/img_forest.jpg'
-      />
+      <Wrapper>
+        <ReactZoom
+          url='http://www.jacklmoore.com/img/daisy.jpg'
+        />
+      </Wrapper>
     </div>
   )
 }

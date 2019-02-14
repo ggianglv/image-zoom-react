@@ -1,0 +1,20 @@
+.react-zoom-wrapper {
+  border: 0;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.react-zoom-origin-image {
+  pointer-events: none;
+  user-select: none;
+  width: 100%;
+  object-fit: cover;
+}
+
+.react-zoom-image {
+  pointer-events: none;
+  position: absolute;
+  object-fit: cover;
+}
