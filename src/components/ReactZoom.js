@@ -17,7 +17,8 @@ const ReactZoom = (props) => {
     onImageLoaded,
     onZoomIn,
     onZoomOut,
-    alt
+    alt,
+    touch,
   } = props
   const [data, setData] = useState({
     left: 0,
@@ -47,16 +48,18 @@ const ReactZoom = (props) => {
     image.src = url
   }, [])
 
-  const getPos = (e) => {
+  const getPos = (e, isTouch = false) => {
     const rect = e.target.getBoundingClientRect()
+    const clientX = isTouch ? e.targetTouches[0].clientX : e.clientX
+    const clientY = isTouch ? e.targetTouches[0].clientY : e.clientY
     return {
-      x: e.clientX - (rect.left + document.body.scrollLeft),
-      y: e.clientY - (rect.top + document.body.scrollTop),
+      x: clientX - rect.left,
+      y: clientY - rect.top,
     }
   }
 
-  const zoom = (e) => {
-    const pos = getPos(e)
+  const zoom = (e, isTouch = false) => {
+    const pos = getPos(e, isTouch)
     const originWidth = data.width / magnify
     const originHeight = data.height / magnify
     const left = (pos.x / originWidth) * (originWidth - data.width)
@@ -98,6 +101,28 @@ const ReactZoom = (props) => {
     }
   }
 
+  const onTouchStart = (e) => {
+    if (!touch) {
+      return
+    }
+    zoom(e, true)
+    setIsZoom(true)
+  }
+
+  const onTouchMove = (e) => {
+    if (!touch) {
+      return
+    }
+    zoom(e, true)
+  }
+
+  const onTouchEnd = (e) => {
+    if (!touch) {
+      return
+    }
+    setIsZoom(false)
+  }
+
   return (
     <div
       className="react-zoom-wrapper"
@@ -109,6 +134,9 @@ const ReactZoom = (props) => {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onMouseMove={onMouseMove}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
     >
       <img
         ref={imageRef}
@@ -139,6 +167,7 @@ ReactZoom.propTypes = {
   url: PropTypes.string.isRequired,
   alt: PropTypes.string,
   zoomUrl: PropTypes.string,
+  touch: PropTypes.bool,
   on: PropTypes.string,
   duration: PropTypes.number,
   magnify: PropTypes.number,
@@ -149,6 +178,7 @@ ReactZoom.propTypes = {
 
 ReactZoom.defaultProps = {
   zoomUrl: '',
+  touch: true,
   alt: 'image',
   on: ON_TYPES.mouseover,
   magnify: 1.5,
