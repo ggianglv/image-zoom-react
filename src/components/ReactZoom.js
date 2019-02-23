@@ -9,8 +9,8 @@ const ON_TYPES = {
 
 const ReactZoom = (props) => {
   const {
-    url,
-    zoomUrl,
+    src,
+    zoomSrc,
     duration,
     magnify,
     on,
@@ -29,23 +29,23 @@ const ReactZoom = (props) => {
 
   useEffect(() => {
     if (isZoom) {
-      onZoomIn()
+      onZoomIn(imageRef.current)
     } else {
-      onZoomOut()
+      onZoomOut(imageRef.current)
     }
   }, [isZoom])
 
   useLayoutEffect(() => {
     const image = document.createElement('img')
     image.onload = () => {
-      onImageLoaded()
       setData({
         ...data,
         width: imageRef.current.clientWidth * magnify,
         height: imageRef.current.clientHeight * magnify,
       })
+      onImageLoaded(imageRef.current)
     }
-    image.src = url
+    image.src = src
   }, [])
 
   const getPos = (e, isTouch = false) => {
@@ -142,7 +142,7 @@ const ReactZoom = (props) => {
         ref={imageRef}
         alt={alt}
         className="react-zoom-origin-image"
-        src={url}
+        src={src}
       />
       {!!data.width && (
         <img
@@ -156,7 +156,7 @@ const ReactZoom = (props) => {
             opacity: +isZoom,
           }}
           alt="image zoom"
-          src={zoomUrl || url}
+          src={zoomSrc || src}
         />
       )}
     </div>
@@ -164,9 +164,9 @@ const ReactZoom = (props) => {
 }
 
 ReactZoom.propTypes = {
-  url: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
   alt: PropTypes.string,
-  zoomUrl: PropTypes.string,
+  zoomSrc: PropTypes.string,
   touch: PropTypes.bool,
   on: PropTypes.string,
   duration: PropTypes.number,
@@ -177,11 +177,11 @@ ReactZoom.propTypes = {
 }
 
 ReactZoom.defaultProps = {
-  zoomUrl: '',
+  zoomSrc: '',
   touch: true,
   alt: 'image',
   on: ON_TYPES.mouseover,
-  magnify: 1.5,
+  magnify: 2,
   duration: 200,
   onImageLoaded: () => {},
   onZoomIn: () => {},

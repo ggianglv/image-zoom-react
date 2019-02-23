@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import ReactZoom from './dist/ReactZoom'
+import ReactZoom from './components/ReactZoom'
 import './App.css'
 
 const Wrapper = styled.div`
@@ -45,7 +45,7 @@ const App = () => {
           key={magnify} // trigger remount when change magnify
           on={on}
           magnify={magnify}
-          url='http://www.jacklmoore.com/img/daisy.jpg'
+          src='http://www.jacklmoore.com/img/daisy.jpg'
         />
 
         <Options>
