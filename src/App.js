@@ -1,26 +1,76 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import ReactZoom from './components/ReactZoom'
+import ReactZoom from './dist/ReactZoom'
 import './App.css'
 
 const Wrapper = styled.div`
-  width: 300px;
+  width: 500px;
+  margin: 0 auto;
+`
+
+const Options = styled.div`
+  display: flex;
+  margin-top: 10px;
+`
+const Option = styled.div`
+  display: flex;
+  font-size: 14px;
+  margin-right: 10px;
+`
+
+const CustomLabel = styled.div`
+  margin-right: 4px;
+`
+
+const CustomSelect = styled.select`
+  
 `
 
 const App = () => {
+  const [on, setOn] = useState('mouseover')
+  const [magnify, setMagnify] = useState(1.5)
+
+  const onOnChange = (e) => {
+    setOn(e.target.value)
+  }
+
+  const onMagnifyChange = (e) => {
+    setMagnify(+e.target.value)
+  }
+
   return (
     <div className="App">
       <Wrapper>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
         <ReactZoom
-          on="mouseover"
+          key={magnify} // trigger remount when change magnify
+          on={on}
+          magnify={magnify}
           url='http://www.jacklmoore.com/img/daisy.jpg'
         />
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
+
+        <Options>
+          <Option>
+            <CustomLabel>
+              on
+            </CustomLabel>
+            <CustomSelect onChange={onOnChange} value={on}>
+              <option value="mouseover">mouseover</option>
+              <option value="grab">grab</option>
+            </CustomSelect>
+          </Option>
+
+          <Option>
+            <CustomLabel>
+              magnify
+            </CustomLabel>
+            <CustomSelect onChange={onMagnifyChange} value={magnify}>
+              <option value="1.5">1.5</option>
+              <option value="2">2</option>
+              <option value="2.5">2.5</option>
+              <option value="3">3</option>
+            </CustomSelect>
+          </Option>
+        </Options>
       </Wrapper>
     </div>
   )
