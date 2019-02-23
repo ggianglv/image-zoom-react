@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/image-zoom-react/static/js/2.fc304b51.chunk.js"
   },
   {
-    "revision": "22a26d8f6017371abaf289be04e2839f",
+    "revision": "64c8e8436f30e9c70350c0955db87fc3",
     "url": "/image-zoom-react/index.html"
   }
 ];
