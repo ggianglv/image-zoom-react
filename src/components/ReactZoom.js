@@ -7,6 +7,12 @@ const ON_TYPES = {
   grab: 'grab',
 }
 
+const preventBehavior = (e) => {
+  if (e.cancelable) {
+    e.preventDefault()
+  }
+}
+
 const ReactZoom = (props) => {
   const {
     src,
@@ -105,21 +111,25 @@ const ReactZoom = (props) => {
     if (!touch) {
       return
     }
-    zoom(e, true)
+    window.addEventListener('touchmove', preventBehavior, { passive: false })
     setIsZoom(true)
+    zoom(e, true)
   }
 
   const onTouchMove = (e) => {
     if (!touch) {
       return
     }
+
     zoom(e, true)
   }
 
-  const onTouchEnd = (e) => {
+  const onTouchEnd = () => {
     if (!touch) {
       return
     }
+    window.removeEventListener('touchmove', preventBehavior)
+
     setIsZoom(false)
   }
 
@@ -155,7 +165,7 @@ const ReactZoom = (props) => {
             transition: `opacity ${duration}ms ease-in-out`,
             opacity: +isZoom,
           }}
-          alt="image zoom"
+          alt={alt}
           src={zoomSrc || src}
         />
       )}
@@ -179,7 +189,7 @@ ReactZoom.propTypes = {
 ReactZoom.defaultProps = {
   zoomSrc: '',
   touch: true,
-  alt: 'image',
+  alt: 'zoom',
   on: ON_TYPES.mouseover,
   magnify: 2,
   duration: 200,
