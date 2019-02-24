@@ -58,10 +58,13 @@ const ReactZoom = (props) => {
     const rect = e.target.getBoundingClientRect()
     const clientX = isTouch ? e.targetTouches[0].clientX : e.clientX
     const clientY = isTouch ? e.targetTouches[0].clientY : e.clientY
-    return {
-      x: clientX - rect.left,
-      y: clientY - rect.top,
-    }
+
+    let x = clientX - rect.left
+    let y = clientY - rect.top
+    x = Math.max(0, x)
+    y = Math.max(0, y)
+    console.log(y)
+    return { x, y }
   }
 
   const zoom = (e, isTouch = false) => {
