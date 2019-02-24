@@ -1,13 +1,13 @@
 {
-  "main.css": "/image-zoom-react/static/css/main.7bdfcd03.chunk.css",
-  "main.js": "/image-zoom-react/static/js/main.0dba5fe1.chunk.js",
-  "main.js.map": "/image-zoom-react/static/js/main.0dba5fe1.chunk.js.map",
+  "main.css": "/image-zoom-react/static/css/main.3104724b.chunk.css",
+  "main.js": "/image-zoom-react/static/js/main.b077da32.chunk.js",
+  "main.js.map": "/image-zoom-react/static/js/main.b077da32.chunk.js.map",
   "runtime~main.js": "/image-zoom-react/static/js/runtime~main.1f8da143.js",
   "runtime~main.js.map": "/image-zoom-react/static/js/runtime~main.1f8da143.js.map",
   "static/js/2.fc304b51.chunk.js": "/image-zoom-react/static/js/2.fc304b51.chunk.js",
   "static/js/2.fc304b51.chunk.js.map": "/image-zoom-react/static/js/2.fc304b51.chunk.js.map",
   "index.html": "/image-zoom-react/index.html",
-  "precache-manifest.b6ff3431352b5a879e6ad40980ede699.js": "/image-zoom-react/precache-manifest.b6ff3431352b5a879e6ad40980ede699.js",
+  "precache-manifest.aa48d94fbd2b6ce70013b0a527f8e4d7.js": "/image-zoom-react/precache-manifest.aa48d94fbd2b6ce70013b0a527f8e4d7.js",
   "service-worker.js": "/image-zoom-react/service-worker.js",
-  "static/css/main.7bdfcd03.chunk.css.map": "/image-zoom-react/static/css/main.7bdfcd03.chunk.css.map"
+  "static/css/main.3104724b.chunk.css.map": "/image-zoom-react/static/css/main.3104724b.chunk.css.map"
 }
