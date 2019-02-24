@@ -63,7 +63,7 @@ const ReactZoom = (props) => {
     let y = clientY - rect.top
     x = Math.max(0, x)
     y = Math.max(0, y)
-    console.log(y)
+
     return { x, y }
   }
 

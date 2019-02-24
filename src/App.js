@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import ReactZoom from './components/ReactZoom'
+import ReactZoom from './dist/ReactZoom'
 import './App.css'
 
 const Wrapper = styled.div`

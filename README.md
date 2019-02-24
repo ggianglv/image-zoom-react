@@ -9,7 +9,7 @@ import ReactDom from 'react-dom'
 import ImageZoom from 'image-zoom-react'
 
 const App = () => (
-    <ImageZoom url="image url" magnify={3} />
+    <ImageZoom src="image url" magnify={1.5} />
 )
 
 ReactDom.render(<App />, document.getElementById('app'))
