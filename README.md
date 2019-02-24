@@ -1,7 +1,7 @@
 # Image Zoom React
 A component react to enlarge images on touch, click, or mouseover.
 ### Installation
-<!--`yarn add image-zoom-react` or `npm install --save image-zoom-react`-->
+`yarn add image-zoom-react` or `npm install --save image-zoom-react`
 ### Usage
 ```
 import React from 'react'

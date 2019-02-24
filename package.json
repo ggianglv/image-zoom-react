@@ -1,9 +1,13 @@
 {
-  "name": "react-zoom-image",
+  "name": "image-zoom-react",
   "version": "0.1.0",
   "homepage": "https://gianglevan94.github.io/image-zoom-react/",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "src/dist/index.js",
+  "module": "src/dist/index.js",
+  "files": [
+    "src/dist",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/gianglevan94/image-zoom-react"
