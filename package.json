@@ -1,9 +1,9 @@
 {
   "name": "image-zoom-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://gianglevan94.github.io/image-zoom-react/",
-  "main": "src/dist/index.js",
-  "module": "src/dist/index.js",
+  "main": "src/dist/ReactZoom.js",
+  "module": "src/dist/ReactZoom.js",
   "files": [
     "src/dist",
     "README.md"
@@ -12,8 +12,7 @@
     "type": "git",
     "url": "https://github.com/gianglevan94/image-zoom-react"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "rm -rf src/dist && NODE_ENV=production babel src/components --out-dir src/dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
@@ -34,10 +33,10 @@
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "gh-pages": "^2.0.1",
-    "react-scripts": "2.1.5",
     "prop-types": "^15.7.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "react-scripts": "2.1.5",
     "styled-components": "^4.1.3"
   }
 }
