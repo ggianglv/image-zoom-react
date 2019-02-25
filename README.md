@@ -5,14 +5,16 @@ A component react to enlarge images on touch, click, or mouseover.
 ### Usage
 ```
 import React from 'react'
-import ReactDom from 'react-dom'
+import ReactDOM from 'react-dom'
 import ImageZoom from 'image-zoom-react'
 
 const App = () => (
-    <ImageZoom src="image url" magnify={1.5} />
+    <div style={{ width: '300px' }}>
+        <ImageZoom src="image url" magnify={1.5} />
+    </div>
 )
 
-ReactDom.render(<App />, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'))
 ```
 ### props
 | props          | default     |  description                                                                        |

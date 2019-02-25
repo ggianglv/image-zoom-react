@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 
 const Options = styled.div`
   display: flex;
-  margin-top: 10px;
+  align-items: center;
 `
 const Option = styled.div`
   display: flex;
@@ -24,6 +24,13 @@ const CustomLabel = styled.div`
 
 const CustomSelect = styled.select`
   
+`
+
+const GithubLink = styled.a`
+  img {
+    height: 30px;
+    width: 30px;
+  }
 `
 
 const App = () => {
@@ -70,6 +77,10 @@ const App = () => {
               <option value="3">3</option>
             </CustomSelect>
           </Option>
+
+          <GithubLink href="https://github.com/gianglevan94/image-zoom-react">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="github icon" />
+          </GithubLink>
         </Options>
       </Wrapper>
     </div>
